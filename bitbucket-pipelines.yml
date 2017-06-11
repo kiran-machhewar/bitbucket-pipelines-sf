@@ -1,0 +1,20 @@
+image:
+ name: smachhewar/sf-deploy
+pipelines:
+ branches:
+  dev:
+   - step:
+      script:
+       - ant -buildfile build/build.xml deployCode -Dsf.username=$sf_dev_username -Dsf.password=$sf_dev_password -Dsf.serverurl=$sf_production_login
+  qa:
+   - step:
+      script:
+       - ant -buildfile build/build.xml deployCode -Dsf.username=$sf_qa_username -Dsf.password=$sf_qa_password -Dsf.serverurl=$sf_production_login
+  uat:
+   - step:
+      script:
+       - ant -buildfile build/build.xml deployCode -Dsf.username=$sf_uat_username -Dsf.password=$sf_uat_password -Dsf.serverurl=$sf_production_login
+  master:
+   - step:
+      script:
+       - ant -buildfile build/build.xml deployCode -Dsf.username=$sf_prod_username -Dsf.password=$sf_prod_password -Dsf.serverurl=$sf_production_login
